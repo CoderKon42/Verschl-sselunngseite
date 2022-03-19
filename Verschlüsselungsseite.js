@@ -167,17 +167,23 @@ let minus = (minuend, substrahend) => { //minuend-substrahend; input als String
     }
 }
 
-let mal = (faktorOne, faktorTwo) => {
+let mal = (faktorOne, faktorTwo) => { // noch nicht fertig
     let faktorOneArr = Array.from(faktorOne);
     let faktorTwoArr = Array.from(faktorTwo);
+    let übertragung = "0";
     faktorOneArr = invertArr(faktorOneArr);
     faktorTwoArr = invertArr(faktorTwoArr);
     let toAdd = [];
     let pushingIntoToAdd = "";
     for (let i = 0; i < faktorOneArr.length; i++) {
         for (let k = 0; k < faktorTwoArr; k++) {
-            if (parseInt(faktorOneArr[i]) * parseInt(faktorOneArr[k])) {
-                pushingIntoToAdd = String(parseInt(faktorOneArr[i]) * parseInt(faktorOneArr[k]));
+            if (größer(String(parseInt(faktorOneArr[i]) * parseInt(faktorOneArr[k])), "10") == "10") {
+                pushingIntoToAdd += String(parseInt(faktorOneArr[i]) * parseInt(faktorOneArr[k]));
+                übertragung = "0"
+            } else {
+                let Arrforlastdigit = Array.from(String(parseInt(faktorOneArr[i]) * parseInt(faktorOneArr[k])));
+                pushingIntoToAdd += Arrforlastdigit[1];
+                übertragung = Arrforlastdigit[0]
             }
         }
     }
