@@ -11,14 +11,18 @@ let deleteprenulls = (number) => { //number as an Array; no null
     }
     return number;
 }
-
+let invertArr = (Arr) => {
+    let Arrinverted = "";
+    for (let i = 0; i < Arr.length; i++) {
+        Arrinverted += Arr[Arr.length - 1 - i]
+    }
+    return Arrinverted;
+}
 let größer = (one, two) => { //input als String
     let Arrone = Array.from(one);
     let Arrtwo = Array.from(two);
     deleteprenulls(Arrone);
     deleteprenulls(Arrtwo);
-    console.log(Arrone)
-    console.log(Arrtwo)
     if (Arrone[0] == "-" && Arrtwo[0] == "-") {
         if (Arrone.length > Arrtwo.length) {
             return two; //Schaut anhand der länge nach der größeren Zahl
@@ -163,6 +167,21 @@ let minus = (minuend, substrahend) => { //minuend-substrahend; input als String
     }
 }
 
+let mal = (faktorOne, faktorTwo) => {
+    let faktorOneArr = Array.from(faktorOne);
+    let faktorTwoArr = Array.from(faktorTwo);
+    faktorOneArr = invertArr(faktorOneArr);
+    faktorTwoArr = invertArr(faktorTwoArr);
+    let toAdd = [];
+    let pushingIntoToAdd = "";
+    for (let i = 0; i < faktorOneArr.length; i++) {
+        for (let k = 0; k < faktorTwoArr; k++) {
+            if (parseInt(faktorOneArr[i]) * parseInt(faktorOneArr[k])) {
+                pushingIntoToAdd = String(parseInt(faktorOneArr[i]) * parseInt(faktorOneArr[k]));
+            }
+        }
+    }
+}
 
 let wurzelziehen = (underwurzel) => {
     let wurzelArr = Array.from(String(underwurzel));
@@ -201,15 +220,12 @@ let wurzelziehen = (underwurzel) => {
         } //gives the correct value for numberforprocessStr
         let calcstartStr = String(parseInt(result) * 2) + "1";
         let Arrzr = [];
-        console.log(numberforprocessStr);
-        console.log(calcstartStr)
         if (minus(numberforprocessStr, calcstartStr) >= 0) {
             for (let k = 0; größer(numberforprocessStr, "0") != 0; k++) {
-                console.log(numberforprocessStr)
-                console.log(plus(String(k * 2), calcstartStr))
                 numberforprocessStr = minus(numberforprocessStr, plus(String(k * 2), calcstartStr));
                 Arrzr.push(numberforprocessStr);
-                console.log(Arrzr)
+                console.log(numberforprocessStr)
+                console.log(plus(String(k * 2), calcstartStr))
                 if (größer(numberforprocessStr, "0") == "0") {
 
                 } else {
