@@ -178,16 +178,18 @@ let mal = (faktorOne, faktorTwo) => { // noch nicht fertig
     for (let i = 0; i < faktorOneArr.length; i++) {
         for (let k = 0; k < faktorTwoArr; k++) {
             if (größer(String(parseInt(faktorOneArr[i]) * parseInt(faktorOneArr[k])), "10") == "10") {
-                pushingIntoToAdd += String(parseInt(faktorOneArr[i]) * parseInt(faktorOneArr[k]));
+                pushingIntoToAdd += String(parseInt(faktorOneArr[i]) * parseInt(faktorTwoArr[k]));
+                console.log(parseInt(faktorOneArr[i]), parseInt(faktorTwoArr[k]))
                 übertragung = "0"
             } else {
-                let Arrforlastdigit = Array.from(String(parseInt(faktorOneArr[i]) * parseInt(faktorOneArr[k])));
-                pushingIntoToAdd += Arrforlastdigit[1];
-                übertragung = Arrforlastdigit[0]
+                let ArrForLastDigit = Array.from(String(parseInt(faktorOneArr[i]) * parseInt(faktorOneArr[k])));
+                pushingIntoToAdd += ArrForLastDigit[1];
+                übertragung = ArrForLastDigit[0];
             }
         }
     }
 }
+mal("20", "2")
 
 let wurzelziehen = (underwurzel) => {
     let wurzelArr = Array.from(String(underwurzel));
