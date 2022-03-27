@@ -148,7 +148,7 @@ let minus = (minuend, substrahend) => { //minuend-substrahend; input als String
             result += resultinvertedArr[resultinvertedArr.length - 1 - i];
         } // result wird in die richtige reihfolge gebracht
         let resultArr = Array.from(result)
-        if (parseInt(result != 0)) {
+        if (parseInt(result) != 0) {
             resultArr = deleteprenulls(resultArr);
         }
         let givebackresult = ""
@@ -158,7 +158,7 @@ let minus = (minuend, substrahend) => { //minuend-substrahend; input als String
         return givebackresult;
     }
 }
-let mal = (faktorOne, faktorTwo) => { // noch nicht fertig
+let mal = (faktorOne, faktorTwo) => {
     let faktorOneArr = Array.from(faktorOne);
     let faktorTwoArr = Array.from(faktorTwo);
     faktorOneArr = invertArr(faktorOneArr);
@@ -200,7 +200,6 @@ let mal = (faktorOne, faktorTwo) => { // noch nicht fertig
     return result;
 
 }
-console.log(mal("96", "1"))
 let wurzelziehen = (underwurzel) => {
     let wurzelArr = Array.from(String(underwurzel));
     wurzelArr = deleteprenulls(wurzelArr);
@@ -210,7 +209,7 @@ let wurzelziehen = (underwurzel) => {
     let digitNumber = wurzelArr.length;
     if (digitNumber % 2 === 0) {
         for (let i = 0; i < wurzelArr.length / 2; i++) {
-            let newinput = wurzelArr[2 * i] + wurzelArr[2 * i + 1];
+            let newinput = wurzelArr[mal("2", String(i))] + wurzelArr[plus(mal("2", String(i)), 1)];
             wurzelArrNew.push(newinput);
         }
     } else if (digitNumber % 2 === 1) {
@@ -219,7 +218,7 @@ let wurzelziehen = (underwurzel) => {
             if (i === 0) {
                 newinput = wurzelArr[0];
             } else {
-                newinput = wurzelArr[2 * i - 1] + wurzelArr[2 * i];
+                newinput = wurzelArr[minus(mal('2', String(i)), '1')] + wurzelArr[mal("2", String(i))];
             }
             wurzelArrNew.push(newinput);
         }
@@ -236,12 +235,11 @@ let wurzelziehen = (underwurzel) => {
         } else {
             numberforprocessStr = rest + "00"
         } //gives the correct value for numberforprocessStr
-        let calcstartStr = String(parseInt(result) * 2) + "1";
+        let calcstartStr = mal(result, "2") + "1"
         let Arrzr = [];
         if (minus(numberforprocessStr, calcstartStr) >= 0) {
             for (let k = 0; größer(numberforprocessStr, "0") != 0; k++) {
-                numberforprocessStr = minus(numberforprocessStr, plus(String(k *
-                    2), calcstartStr));
+                numberforprocessStr = minus(numberforprocessStr, plus(mal(String(k), "2"), calcstartStr));
                 Arrzr.push(numberforprocessStr);
                 if (größer(numberforprocessStr, "0") == "0") {} else {
                     rest = numberforprocessStr;
@@ -259,6 +257,7 @@ let wurzelziehen = (underwurzel) => {
     }
     return result;
 }
+
 let paraone;
 let paratwo;
 let ersteWurzel = () => {
