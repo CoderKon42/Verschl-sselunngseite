@@ -257,19 +257,116 @@ let wurzelziehen = (underwurzel) => {
     }
     return result;
 }
+let randomchar = () => {
+    let double = Math.random() * 10000;
+    if (double > 9442) {
+        return "a";
+    } else if (double > 9388) {
+        return "ä";
+    } else if (double > 9192) {
+        return "b";
+    } else if (double > 8876) {
+        return "c";
+    } else if (double > 8378) {
+        return "d";
+    } else if (double > 6685) {
+        return "e";
+    } else if (double > 6536) {
+        return "f";
+    } else if (double > 6234) {
+        return "g";
+    } else if (double > 5736) {
+        return "h";
+    } else if (double > 4934) {
+        return "i";
+    } else if (double > 4910) {
+        return "j";
+    } else if (double > 4778) {
+        return "k";
+    } else if (double > 4418) {
+        return "l";
+    } else if (double > 4163) {
+        return "m";
+    } else if (double > 3128) {
+        return "n";
+    } else if (double > 2904) {
+        return "o";
+    } else if (double > 2874) {
+        return "ö";
+    } else if (double > 2807) {
+        return "p";
+    } else if (double > 2805) {
+        return "q";
+    } else if (double > 2116) {
+        return "r"
+    } else if (double > 2079) {
+        return "ß"
+    } else if (double > 1437) {
+        return "s"
+    } else if (double > 858) {
+        return "t"
+    } else if (double > 475) {
+        return "u"
+    } else if (double > 410) {
+        return "ü"
+    } else if (double > 326) {
+        return "v"
+    } else if (double > 148) {
+        return "w"
+    } else if (double > 143) {
+        return "x"
+    } else if (double > 138) {
+        return "y"
+    } else {
+        return "z"
+    }
+} // gets a random character in the commenness of german
 
-let paraone;
-let paratwo;
-let ersteWurzel = () => {
-    let wurzel = document.getElementById("wurzel1").value;
-    paraone = wurzelziehen(wurzel);
-    console.log(paraone);
+let samepositionArr = [];
+let usertextArr = [];
+let ready = (wert) => {
+    let runthrow = 1
+    let text = document.getElementById('text').value;
+    let textArr = Array.from(text);
+    let wurzelzahl1 = String(document.getElementById('wurzel1').value);
+    let wurzelzahl2 = String(document.getElementById('wurzel2').value);
+    let wurzel1 = "";
+    let wurzel2 = "";
+    let smallestlength;
+    let sameposition = [];
+    for (let i = 0; i < textArr.length * wert; i++) {
+        wurzelzahl1 += "00"
+        wurzelzahl2 += "00"
+    }
+    wurzel1 = wurzelziehen(wurzelzahl1);
+    wurzel2 = wurzelziehen(wurzelzahl2);
+    let wurzel1Arr = Array.from(wurzel1);
+    let wurzel2Arr = Array.from(wurzel2);
+
+    if (wurzel1Arr.length < wurzel2Arr.length) {
+        smallestlength = wurzel1Arr.length;
+    } else {
+        smallestlength = wurzel2Arr.length;
+    }
+    // looks if the firstpara or the secondpara has more digits
+
+    for (let i = 0; i < smallestlength; i++) {
+        if (wurzel1Arr[i] === wurzel2Arr[i]) {
+            sameposition.push(i + 1)
+        }
+    } // finds out when the digits on the sameposition are the same and safes it in Array 'sameposition'
+    if (sameposition.length < textArr.length) {
+        ready(Math.pow(wert, (runthrow * 1.3)));
+        runthrow++;
+    } else {
+        samepositionArr = sameposition;
+        usertextArr = textArr;
+        ok()
+
+    }
 }
-let zweiteWurzel = () => {
-    let wurzel = document.getElementById("wurzel2").value;
-    paratwo = wurzelziehen(wurzel);
-    console.log(paratwo);
-}
-if (paraone && paratwo != 0) {
-    console.log("runs")
+
+function ok() {
+    console.log(samepositionArr);
+    console.log(usertextArr)
 }
