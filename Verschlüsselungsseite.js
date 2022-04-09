@@ -200,7 +200,7 @@ let mal = (faktorOne, faktorTwo) => {
     return result;
 
 }
-let wurzelziehen = (underwurzel) => {
+let wurzelziehen = (underwurzel) => { // noch fehlerhaft
     let wurzelArr = Array.from(String(underwurzel));
     wurzelArr = deleteprenulls(wurzelArr);
     let wurzelArrNew = [];
@@ -257,6 +257,7 @@ let wurzelziehen = (underwurzel) => {
     }
     return result;
 }
+
 let randomchar = () => {
     let double = Math.random() * 10000;
     if (double > 9442) {
@@ -361,12 +362,93 @@ let ready = (wert) => {
     } else {
         samepositionArr = sameposition;
         usertextArr = textArr;
-        ok()
+        if (document.getElementById("toDo").value == "decrypt") {
+            decrypt();
+        }
+        if (document.getElementById("toDo").value == "encrypt") {
+            encrypt();
+        }
 
     }
 }
 
-function ok() {
-    console.log(samepositionArr);
-    console.log(usertextArr)
+function encrypt() { // noch nicht geprüft
+    let inputFromUserInArray = usertextArr;
+    let sameposition = samepositionArr;
+    let output = [];
+    let outputToUser = [];
+    let stringOutputToUser = "";
+    let k = 0;
+    let largestfromsamepostion = Math.max.apply(Math, sameposition) + 1;
+    // checks the greatest position from the Arrays with all the samepositions
+    for (let i = 0; i < largestfromsamepostion; i++) {
+        if (i === sameposition[k]) {
+            output.push(inputFromUserInArray[k]);
+            k++;
+        } else {
+            let char = randomchar();
+            output.push(char);
+        }
+    }
+    // checks whether in output must be pushed an random char or part of the message
+    // random char if on one position are not to same digits from the paras
+    for (let i = 0; i < output.length; i++) {
+        if (output[i] != undefined) {
+            outputToUser.push(output[i]);
+        } else {
+            break;
+        }
+    }
+    // find out if there are less letters in the message then places where the digits of the paras are the same
+    //and breaks befor the first undefind
+    for (let i = 0; i < outputToUser.length; i++) {
+        stringOutputToUser += outputToUser[i];
+    }
+    //makes an String from the Array
+    if (inputFromUserInArray != []) {
+        document.getElementById("output").innerHTML = stringOutputToUser;
+    } else {
+        window.alert("Keine Eingabe!");
+    }
+    //gives back the encrypted message 
+    //or if the is no input an alert
+}
+
+function decrypt() { // noch nicht geprüft
+    let inputFromUserInArray = usertextArr;
+    let sameposition = samepositionArr;
+    let output = [];
+    let outputToUser = [];
+    let stringOutputToUser = "";
+    let k = 0;
+
+    let largestfromsamepostion = Math.max.apply(Math, sameposition) + 1;
+    // checks the greatest position from the Arrays with all the samepositions
+    for (let i = 0; i < largestfromsamepostion; i++) {
+        if (i === sameposition[k]) {
+            k++;
+            output.push(inputFromUserInArray[i])
+        }
+    }
+    // checks whether the Arrays content of the encrypted message is on the keyposition or not
+    // and pushs it into the Array for the output if it is on the keyposition
+    for (let i = 0; i < output.length; i++) {
+        if (output[i] != undefined) {
+            outputToUser.push(output[i]);
+        } else {
+            break;
+        }
+    }
+    // find out if there are less letters in the message then places where the digits of the paras are the same
+    // and breaks befor the first undefind
+    for (let i = 0; i < outputToUser.length; i++) {
+        stringOutputToUser += outputToUser[i];
+    }
+    // makes an String from the Array
+    if (inputFromUserInArray != []) {
+        document.getElementById("outputdecrypted").innerHTML = stringOutputToUser;
+    } else {
+        window.alert("Keine Eingabe!");
+    }
+    // gives the decrypted message back or if there was no input an alert
 }
