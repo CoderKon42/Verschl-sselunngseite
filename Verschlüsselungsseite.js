@@ -325,7 +325,9 @@ let randomchar = () => {
 
 let samepositionArr = [];
 let usertextArr = [];
+
 let ready = (wert) => {
+    console.log('run')
     let runthrow = 1
     let text = document.getElementById('text').value;
     let textArr = Array.from(text);
@@ -339,10 +341,13 @@ let ready = (wert) => {
         wurzelzahl1 += "00"
         wurzelzahl2 += "00"
     }
+    console.log('run')
     wurzel1 = wurzelziehen(wurzelzahl1);
+    console.log('erstefertig');
     wurzel2 = wurzelziehen(wurzelzahl2);
     let wurzel1Arr = Array.from(wurzel1);
     let wurzel2Arr = Array.from(wurzel2);
+    console.log('run')
 
     if (wurzel1Arr.length < wurzel2Arr.length) {
         smallestlength = wurzel1Arr.length;
@@ -362,6 +367,7 @@ let ready = (wert) => {
     } else {
         samepositionArr = sameposition;
         usertextArr = textArr;
+        console.log(document.getElementById("toDo").value)
         if (document.getElementById("toDo").value == "decrypt") {
             decrypt();
         }
@@ -446,7 +452,7 @@ function decrypt() { // noch nicht geprüft
     }
     // makes an String from the Array
     if (inputFromUserInArray != []) {
-        document.getElementById("outputdecrypted").innerHTML = stringOutputToUser;
+        document.getElementById("output").innerHTML = stringOutputToUser;
     } else {
         window.alert("Keine Eingabe!");
     }
