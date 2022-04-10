@@ -341,13 +341,11 @@ let ready = (wert) => {
         wurzelzahl1 += "00"
         wurzelzahl2 += "00"
     }
-    console.log('run')
+    document.getElementById('output').innerHTML = "wird gerechnet";
     wurzel1 = wurzelziehen(wurzelzahl1);
-    console.log('erstefertig');
     wurzel2 = wurzelziehen(wurzelzahl2);
     let wurzel1Arr = Array.from(wurzel1);
     let wurzel2Arr = Array.from(wurzel2);
-    console.log('run')
 
     if (wurzel1Arr.length < wurzel2Arr.length) {
         smallestlength = wurzel1Arr.length;
