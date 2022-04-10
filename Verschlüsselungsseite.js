@@ -327,7 +327,6 @@ let samepositionArr = [];
 let usertextArr = [];
 
 let ready = (wert) => {
-    console.log('run')
     let runthrow = 1
     let text = document.getElementById('text').value;
     let textArr = Array.from(text);
@@ -365,7 +364,6 @@ let ready = (wert) => {
     } else {
         samepositionArr = sameposition;
         usertextArr = textArr;
-        console.log(document.getElementById("toDo").value)
         if (document.getElementById("toDo").value == "decrypt") {
             decrypt();
         }
