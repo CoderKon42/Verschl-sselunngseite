@@ -336,11 +336,17 @@ let ready = (wert) => {
     let wurzel2 = "";
     let smallestlength;
     let sameposition = [];
-    for (let i = 0; i < textArr.length * wert; i++) {
-        wurzelzahl1 += "00"
-        wurzelzahl2 += "00"
+    if (document.getElementById('toDo').value == "encrypt") {
+        for (let i = 0; i < textArr.length * wert; i++) {
+            wurzelzahl1 += "00"
+            wurzelzahl2 += "00"
+        }
+    } else if (document.getElementById('toDo').value == "decrypt") {
+        for (let i = 0; i < textArr.length; i++) {
+            wurzelzahl1 += "00"
+            wurzelzahl2 += "00"
+        }
     }
-    document.getElementById('output').innerHTML = "wird gerechnet";
     wurzel1 = wurzelziehen(wurzelzahl1);
     wurzel2 = wurzelziehen(wurzelzahl2);
     let wurzel1Arr = Array.from(wurzel1);
@@ -358,7 +364,7 @@ let ready = (wert) => {
             sameposition.push(i + 1)
         }
     } // finds out when the digits on the sameposition are the same and safes it in Array 'sameposition'
-    if (sameposition.length < textArr.length) {
+    if (sameposition.length < textArr.length && document.getElementById("toDo").value == "encrypt") {
         ready(Math.pow(wert, (runthrow * 1.3)));
         runthrow++;
     } else {
