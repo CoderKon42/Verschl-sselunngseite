@@ -255,7 +255,14 @@ let wurzelziehen = (underwurzel) => { // noch fehlerhaft
             rest = numberforprocessStr;
         }
     }
-    return result;
+    let resultArr = Array.from(result);
+    resultArr.shift();
+    let giveback = ''
+    for (let i = 0; i < resultArr.length; i++) {
+        giveback += resultArr[i];
+    }
+    console.log(giveback)
+    return giveback;
 }
 
 let randomchar = () => {
@@ -325,7 +332,6 @@ let randomchar = () => {
 
 let samepositionArr = [];
 let usertextArr = [];
-
 let ready = (wert) => {
     let runthrow = 1
     let text = document.getElementById('text').value;
