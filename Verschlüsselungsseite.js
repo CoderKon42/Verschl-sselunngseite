@@ -1,4 +1,5 @@
-let deleteprenulls = (number) => { //number as an Array; no null
+// input as an Array; input not ['0']
+let deleteprenulls = (number) => {
     wasntnullbefore = true;
     for (let i = 0; i < number.length; i++) {
         if (number[0] === "0") {
@@ -6,11 +7,13 @@ let deleteprenulls = (number) => { //number as an Array; no null
                 number.shift();
             }
         } else {
-            wasntnullbefore = false
+            wasntnullbefore = false;
         }
     }
     return number;
 }
+// inverts the order of an Array
+// input as an Arr 
 let invertArr = (Arr) => {
     let Arrinverted = "";
     for (let i = 0; i < Arr.length; i++) {
@@ -18,16 +21,17 @@ let invertArr = (Arr) => {
     }
     return Arrinverted;
 }
-let größer = (one, two) => { //input als String
+//inputs as Strings
+let größer = (one, two) => {
     let Arrone = Array.from(one);
     let Arrtwo = Array.from(two);
     deleteprenulls(Arrone);
     deleteprenulls(Arrtwo);
-    if (Arrone[0] == "-" && Arrtwo[0] == "-") {
+    if (Arrone[0] == "-" && Arrtwo[0] == "-") { //for both strings negativ
         if (Arrone.length > Arrtwo.length) {
-            return two; //Schaut anhand der länge nach der größeren Zahl
+            return two;
         } else if (Arrtwo.length > Arrone.length) {
-            return one; //Schaut anhand der länge nach der größeren Zahl
+            return one; //Search by the length of the Array from input-strings
         } else {
             for (let i = 0; i < Arrone.length; i++) {
                 if (Arrone[i] < Arrtwo[i]) {
@@ -36,21 +40,21 @@ let größer = (one, two) => { //input als String
                 } else if (Arrtwo[i] < Arrone[i]) {
                     return two;
                     break;
-                } //schaut anhand der Ziffernn (mit höchsten Prioritäten) nach der größeren Zahl
+                } //Search by the digits for the greater number
             }
             return "same"
         }
-    } else if (Arrone[0] == "-" || Arrtwo[0] == "-") {
+    } else if (Arrone[0] == "-" || Arrtwo[0] == "-") { //for only one Array negativ
         if (Arrone[0] == "-") {
             return two
         } else if (Arrtwo == "-0") {
             return one
         }
-    } else {
+    } else { // for both Arrays positiv
         if (Arrone.length > Arrtwo.length) {
-            return one; //Schaut anhand der länge nach der größeren Zahl
+            return one;
         } else if (Arrtwo.length > Arrone.length) {
-            return two; //Schaut anhand der länge nach der größeren Zahl
+            return two; //Search by the length of the Array from input-strings
         } else {
             for (let i = 0; i < Arrone.length; i++) {
                 if (Arrone[i] < Arrtwo[i]) {
@@ -59,13 +63,14 @@ let größer = (one, two) => { //input als String
                 } else if (Arrtwo[i] < Arrone[i]) {
                     return one;
                     break;
-                } //schaut anhand der Ziffernn (mit höchsten Prioritäten) nach der größeren Zahl
+                } //Search by the digits for the greater number
             }
             return "same"
         }
     }
 }
-let plus = (sumone, sumtwo) => { // input als String
+// input als String
+let plus = (sumone, sumtwo) => {
     let sumoneArr = Array.from(sumone);
     let sumtwoArr = Array.from(sumtwo);
     if (sumone == "0") {} else {
@@ -74,9 +79,9 @@ let plus = (sumone, sumtwo) => { // input als String
     if (sumtwo == "0") {} else {
         sumtwoArr = deleteprenulls(sumtwoArr);
     }
-    let übertragung = 0;
+    let transmission = 0;
     let resultinverted = "";
-    let result = "";
+    let result = [];
     let outputAsString = "";
     let runthrow;
     if (sumoneArr.length > sumtwoArr.length) {
@@ -91,24 +96,20 @@ let plus = (sumone, sumtwo) => { // input als String
             sumoneArr.unshift("0");
         }
         sumtwoArr.unshift("0")
-    } // die Zahl mit ursprünglich mehr Ziffer bekommt eine Null hinzugefügt, die andere so viele dass sie so viele hat wie die andere zuvor
+    } // the number with more digits gets another 0 in frontposition, the other as many as the other had before, so that the digits can be added one by one
     for (let i = 0; i < runthrow; i++) {
-        if (parseInt(sumoneArr[sumoneArr.length - 1 - i]) +
-            parseInt(sumtwoArr[sumtwoArr.length - 1 - i]) + übertragung < 10) {
+        if (parseInt(sumoneArr[sumoneArr.length - 1 - i]) + parseInt(sumtwoArr[sumtwoArr.length - 1 - i]) + transmission < 10) {
             resultinverted += String(parseInt(sumoneArr[sumoneArr.length - 1 - i]) +
-                parseInt(sumtwoArr[sumtwoArr.length - 1 - i]) + übertragung)
-            übertragung = 0;
+                parseInt(sumtwoArr[sumtwoArr.length - 1 - i]) + transmission)
+            transmission = 0;
         } else {
-            resultinverted += String(String(parseInt(sumoneArr[sumoneArr.length - 1 -
-                i]) + parseInt(sumtwoArr[sumtwoArr.length - 1 - i]) + übertragung - 10))
-            übertragung = 1;
+            resultinverted += String(String(parseInt(sumoneArr[sumoneArr.length - 1 - i]) + parseInt(sumtwoArr[sumtwoArr.length - 1 - i]) + transmission - 10))
+            transmission = 1;
         }
-    } // für alle Ziffern wird von hinten nach vorne die Addition durchgeführt (bei größer 10 wird in übertragung gespeichert)
-    let resultinvertedArr = Array.from(resultinverted)
-    for (let i = 0; i < resultinvertedArr.length; i++) {
-        result += resultinvertedArr[resultinvertedArr.length - 1 - i];
-    } // result wird in die richtige reihfolge gebracht
-    if (parseInt(result) != 0) {
+    } // all digits getting added one by one from the back forward (if greater 10 saved for next digit pair in transmission)
+    let resultinvertedArr = Array.from(resultinverted);
+    result = invertArr(resultinvertedArr);
+    if (result != ["0"]) {
         result = deleteprenulls(Array.from(result));
     }
     for (let i = 0; i < result.length; i++) {
@@ -116,10 +117,11 @@ let plus = (sumone, sumtwo) => { // input als String
     }
     return outputAsString;
 }
-let minus = (minuend, substrahend) => { //minuend-substrahend; input als String
-    übertragung = 0;
-    result = "";
-    resultinverted = "";
+// input as Strings
+let minus = (minuend, substrahend) => {
+    let transmission = 0;
+    let result = "";
+    let resultinverted = "";
     let resultinvertedArr = [];
     let minuendArr = Array.from(String(minuend));
     let substrahendArr = Array.from(String(substrahend));
@@ -129,24 +131,22 @@ let minus = (minuend, substrahend) => { //minuend-substrahend; input als String
         substrahendArr.unshift("0");
     }
     if (größer(minuend, substrahend) == substrahend) {
-        return "-42" //wenn substarhend > minuend wird -42 zurückgegeben ist zwar nicht richtig aber wurzel schaut nur > 0
+        return "-42" // if result is negativ returns "-42"; later on just looked wether greater null or not 
     } else {
         for (let i = 0; i < minuendArr.length; i++) {
             if (parseInt(minuendArr[minuendArr.length - 1 - i]) -
-                parseInt(substrahendArr[substrahendArr.length - 1 - i]) - übertragung >= 0) {
-                resultinverted += String(parseInt(minuendArr[minuendArr.length - 1 -
-                    i]) - parseInt(substrahendArr[substrahendArr.length - 1 - i]) - übertragung)
-                übertragung = 0;
+                parseInt(substrahendArr[substrahendArr.length - 1 - i]) - transmission >= 0) {
+                resultinverted += String(parseInt(minuendArr[minuendArr.length - 1 - i]) - parseInt(substrahendArr[substrahendArr.length - 1 - i]) - transmission);
+                transmission = 0;
             } else {
-                resultinverted += String(parseInt(minuendArr[minuendArr.length - 1 -
-                    i]) - parseInt(substrahendArr[substrahendArr.length - 1 - i]) - übertragung + 10)
-                übertragung = 1;
+                resultinverted += String(parseInt(minuendArr[minuendArr.length - 1 - i]) - parseInt(substrahendArr[substrahendArr.length - 1 - i]) - transmission + 10);
+                transmission = 1;
             }
-        } //führt die Subtraktion schritt für Schritt von hinten nach vorne aus
+        } // all digits getting substracted one by one from the back forward (if greater 10 saved for next digit pair in transmission)
         resultinvertedArr = Array.from(resultinverted)
         for (let i = 0; i < resultinvertedArr.length; i++) {
             result += resultinvertedArr[resultinvertedArr.length - 1 - i];
-        } // result wird in die richtige reihfolge gebracht
+        } // brings result in right order
         let resultArr = Array.from(result)
         if (parseInt(result) != 0) {
             resultArr = deleteprenulls(resultArr);
@@ -169,7 +169,7 @@ let mal = (faktorOne, faktorTwo) => {
     for (let i = 0; i < faktorOneArr.length; i++) {
         for (let j = 0; j < i; j++) {
             pushingIntoToAdd += "0"
-        }
+        } //adds the amount of 0s needed for correct addition
         for (let k = 0; k < faktorTwoArr.length; k++) {
             if (größer(plus(String(parseInt(faktorOneArr[i]) * parseInt(faktorTwoArr[k])), übertragung), "10") == "10") {
                 pushingIntoToAdd += plus(String(parseInt(faktorOneArr[i]) * parseInt(faktorTwoArr[k])), übertragung);
@@ -179,7 +179,7 @@ let mal = (faktorOne, faktorTwo) => {
                 pushingIntoToAdd += ArrForLastDigit[1];
                 übertragung = ArrForLastDigit[0];
             }
-        }
+        } // multiplies the Arrays number by number (if greater ten saves in transmission)
         pushingIntoToAdd += übertragung;
         toAdd.push(pushingIntoToAdd);
         pushingIntoToAdd = "";
@@ -192,46 +192,44 @@ let mal = (faktorOne, faktorTwo) => {
             invertedNumber += invertedNumberArr[k];
         }
         toAdd[i] = invertedNumber;
-    }
+    } //inverts all elements in toAdd
     let result = "0";
     for (let i = 0; i < toAdd.length; i++) {
         result = plus(result, String(toAdd[i]))
-    }
+    } //adds all elements in to Add
     return result;
-
 }
-let wurzelziehen = (underwurzel) => { // noch fehlerhaft
-    let wurzelArr = Array.from(String(underwurzel));
-    wurzelArr = deleteprenulls(wurzelArr);
-    let wurzelArrNew = [];
-    let wurzelArrNewInInt = [];
+let wurzelziehen = (rootOf) => {
+    let rootOfArr = Array.from(String(rootOf));
+    rootOfArr = deleteprenulls(rootOfArr);
+    let rootOfArrNew = [];
+    let rootOfArrNewInInt = [];
     let result = "0"
-    let digitNumber = wurzelArr.length;
-    if (digitNumber % 2 === 0) {
-        for (let i = 0; i < wurzelArr.length / 2; i++) {
-            let newinput = wurzelArr[mal("2", String(i))] + wurzelArr[plus(mal("2", String(i)), 1)];
-            wurzelArrNew.push(newinput);
+    if (rootOfArr.length % 2 === 0) {
+        for (let i = 0; i < rootOfArr.length / 2; i++) {
+            let newinput = rootOfArr[mal("2", String(i))] + rootOfArr[plus(mal("2", String(i)), 1)];
+            rootOfArrNew.push(newinput);
         }
-    } else if (digitNumber % 2 === 1) {
+    } else if (rootOfArr.length % 2 === 1) {
         let newinput;
-        for (let i = 0; i < wurzelArr.length / 2; i++) {
+        for (let i = 0; i < rootOfArr.length / 2; i++) {
             if (i === 0) {
-                newinput = wurzelArr[0];
+                newinput = rootOfArr[0];
             } else {
-                newinput = wurzelArr[minus(mal('2', String(i)), '1')] + wurzelArr[mal("2", String(i))];
+                newinput = rootOfArr[minus(mal('2', String(i)), '1')] + rootOfArr[mal("2", String(i))];
             }
-            wurzelArrNew.push(newinput);
+            rootOfArrNew.push(newinput);
         }
     }
-    // splits the number in parts of two
-    for (let i = 0; i < wurzelArrNew.length; i++) {
-        wurzelArrNewInInt.push(parseInt(wurzelArrNew[i]));
+    // splits the number in parts of two digits
+    for (let i = 0; i < rootOfArrNew.length; i++) {
+        rootOfArrNewInInt.push(parseInt(rootOfArrNew[i]));
     } // makes ints from Strings
     let rest = "0";
-    for (let i = 0; i <= wurzelArrNewInInt.length - 1; i++) {
+    for (let i = 0; i <= rootOfArrNewInInt.length - 1; i++) {
         let numberforprocessStr;
-        if (wurzelArrNewInInt[i] != 0) {
-            numberforprocessStr = rest + String(wurzelArrNewInInt[i]);
+        if (rootOfArrNewInInt[i] != 0) {
+            numberforprocessStr = rest + String(rootOfArrNewInInt[i]);
         } else {
             numberforprocessStr = rest + "00"
         } //gives the correct value for numberforprocessStr
@@ -254,17 +252,15 @@ let wurzelziehen = (underwurzel) => { // noch fehlerhaft
             result += "0"
             rest = numberforprocessStr;
         }
-    }
+    } //algorithm for the root
     let resultArr = Array.from(result);
     resultArr.shift();
     let giveback = ''
     for (let i = 0; i < resultArr.length; i++) {
         giveback += resultArr[i];
-    }
-    console.log(giveback)
+    } //delete the 0 in beginning
     return giveback;
 }
-
 let randomchar = () => {
     let double = Math.random() * 10000;
     if (double > 9442) {
@@ -381,23 +377,20 @@ let ready = (wert) => {
         }
         if (document.getElementById("toDo").value == "encrypt") {
             encrypt();
-        }
-
+        } // triggers the needed method
     }
 }
 
-function encrypt() { // noch nicht geprüft
-    let inputFromUserInArray = usertextArr;
-    let sameposition = samepositionArr;
+function encrypt() {
     let output = [];
     let outputToUser = [];
     let stringOutputToUser = "";
     let k = 0;
-    let largestfromsamepostion = Math.max.apply(Math, sameposition) + 1;
+    let largestfromsamepostion = Math.max.apply(Math, samepositionArr) + 1;
     // checks the greatest position from the Arrays with all the samepositions
     for (let i = 0; i < largestfromsamepostion; i++) {
-        if (i === sameposition[k]) {
-            output.push(inputFromUserInArray[k]);
+        if (i === samepositionArr[k]) {
+            output.push(usertextArr[k]);
             k++;
         } else {
             let char = randomchar();
@@ -419,7 +412,7 @@ function encrypt() { // noch nicht geprüft
         stringOutputToUser += outputToUser[i];
     }
     //makes an String from the Array
-    if (inputFromUserInArray != []) {
+    if (usertextArr != []) {
         document.getElementById("output").innerHTML = stringOutputToUser;
     } else {
         window.alert("Keine Eingabe!");
@@ -428,20 +421,18 @@ function encrypt() { // noch nicht geprüft
     //or if the is no input an alert
 }
 
-function decrypt() { // noch nicht geprüft
-    let inputFromUserInArray = usertextArr;
-    let sameposition = samepositionArr;
+function decrypt() {
     let output = [];
     let outputToUser = [];
     let stringOutputToUser = "";
     let k = 0;
 
-    let largestfromsamepostion = Math.max.apply(Math, sameposition) + 1;
+    let largestfromsamepostion = Math.max.apply(Math, samepositionArr) + 1;
     // checks the greatest position from the Arrays with all the samepositions
     for (let i = 0; i < largestfromsamepostion; i++) {
-        if (i === sameposition[k]) {
+        if (i === samepositionArr[k]) {
             k++;
-            output.push(inputFromUserInArray[i])
+            output.push(usertextArr[i])
         }
     }
     // checks whether the Arrays content of the encrypted message is on the keyposition or not
@@ -459,7 +450,7 @@ function decrypt() { // noch nicht geprüft
         stringOutputToUser += outputToUser[i];
     }
     // makes an String from the Array
-    if (inputFromUserInArray != []) {
+    if (usertextArr != []) {
         document.getElementById("output").innerHTML = stringOutputToUser;
     } else {
         window.alert("Keine Eingabe!");
