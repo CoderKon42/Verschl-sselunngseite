@@ -11,15 +11,26 @@
 </head>
 
 <body>
-    <input type="number" id="wurzel1">
-    <input type="number" id="wurzel2">
-    <input type="text" id="text">
-    <div>
+    <div class="param">
+        <div>
+            <div class="text">first number:</div>
+            <input type="text" id="wurzel1">
+        </div>
+        <div>
+            <div class="text">second number:</div>
+            <input type="text" id="wurzel2">
+        </div>
+    </div>
+    <div class="values">
+        <div class="text">text:</div>
+        <input type="text" id="text">
         <select id="toDo" list="de-/encrypt" name="de-/encrypt">
             <option value="decrypt">decrypt</option>
             <option value="encrypt">encrypt</option>
-        </select></div>
-    <button onclick="ready(10)"></button>
+        </select>
+
+        <button onclick="ready(10)">submit</button>
+    </div>
     <div id="output"></div>
 </body>
 

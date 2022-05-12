@@ -1,24 +1,64 @@
 body {
-    background-color: rgb(50, 50, 50);
-    color: rgb(230, 230, 230);
+    background-color: rgba(45, 45, 45);
+    display: flex;
+    flex-direction: column;
+}
+
+.text {
+    float: left;
+    color: rgba(225, 225, 225);
+    font-size: 25px;
+    font-family: 'Times New Roman', Times, serif;
+}
+
+#output {
+    color: rgba(225, 225, 225);
 }
 
 input {
-    background-color: rgb(70, 70, 70);
-    color: rgb(230, 230, 230);
+    margin-top: 3px;
     height: 40px;
-    width: 350px;
-    border-radius: 10px 10px 10px 10px;
+    width: 450px;
     font-size: 30px;
-    margin-top: 70px;
-    margin-left: 10px;
+    background-color: rgba(45, 45, 45);
+    color: rgba(225, 225, 225);
+    border: 2px solid rgba(225, 225, 225);
+    border-radius: 10px 10px 10px 10px;
+}
+
+select {
+    height: 46px;
+    color: rgba(225, 225, 225);
+    font-size: 18px;
+    width: 86px;
+    background-color: rgba(45, 45, 45);
+    border: 2px solid rgba(225, 225, 225);
+    border-radius: 10px 10px 10px 10px;
 }
 
 button {
-    background-color: rgb(70, 70, 70);
-    color: rgb(230, 230, 230);
     height: 46px;
-    width: 160px;
+    color: rgba(225, 225, 225);
+    width: 68px;
+    font-size: 18px;
+    background-color: rgba(45, 45, 45);
+    border: 2px solid rgba(225, 225, 225);
     border-radius: 10px 10px 10px 10px;
-    font-size: 30px;
+}
+
+.param {
+    justify-content: flex-start;
+    flex-direction: column;
+}
+
+.param div {
+    margin-top: 2px;
+}
+
+.values button {
+    margin-top: -10px;
+}
+
+.values select {
+    margin-top: -10px;
 }
