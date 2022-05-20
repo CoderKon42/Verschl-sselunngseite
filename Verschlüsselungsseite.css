@@ -13,6 +13,7 @@ body {
 
 #output {
     color: rgba(225, 225, 225);
+    text-align: center;
 }
 
 input {
@@ -53,12 +54,4 @@ button {
 
 .param div {
     margin-top: 2px;
-}
-
-.values button {
-    margin-top: -10px;
-}
-
-.values select {
-    margin-top: -10px;
 }

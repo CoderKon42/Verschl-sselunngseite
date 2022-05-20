@@ -1,123 +1,123 @@
 // input as an Array; input not ['0']
 let deleteprenulls = (number) => {
-    wasntnullbefore = true;
-    for (let i = 0; i < number.length; i++) {
-        if (number[0] === "0") {
-            if (wasntnullbefore) {
-                number.shift();
+        wasntnullbefore = true;
+        for (let i = 0; i < number.length; i++) {
+            if (number[0] === "0") {
+                if (wasntnullbefore) {
+                    number.shift();
+                }
+            } else {
+                wasntnullbefore = false;
             }
-        } else {
-            wasntnullbefore = false;
         }
+        return number;
     }
-    return number;
-}
-// inverts the order of an Array
-// input as an Arr 
+    // inverts the order of an Array
+    // input as an Arr 
 let invertArr = (Arr) => {
-    let Arrinverted = "";
-    for (let i = 0; i < Arr.length; i++) {
-        Arrinverted += Arr[Arr.length - 1 - i]
+        let Arrinverted = "";
+        for (let i = 0; i < Arr.length; i++) {
+            Arrinverted += Arr[Arr.length - 1 - i]
+        }
+        return Arrinverted;
     }
-    return Arrinverted;
-}
-//inputs as Strings
+    //inputs as Strings
 let größer = (one, two) => {
-    let Arrone = Array.from(one);
-    let Arrtwo = Array.from(two);
-    deleteprenulls(Arrone);
-    deleteprenulls(Arrtwo);
-    if (Arrone[0] == "-" && Arrtwo[0] == "-") { //for both strings negativ
-        if (Arrone.length > Arrtwo.length) {
-            return two;
-        } else if (Arrtwo.length > Arrone.length) {
-            return one; //Search by the length of the Array from input-strings
-        } else {
-            for (let i = 0; i < Arrone.length; i++) {
-                if (Arrone[i] < Arrtwo[i]) {
-                    return one;
-                    break;
-                } else if (Arrtwo[i] < Arrone[i]) {
-                    return two;
-                    break;
-                } //Search by the digits for the greater number
+        let Arrone = Array.from(one);
+        let Arrtwo = Array.from(two);
+        deleteprenulls(Arrone);
+        deleteprenulls(Arrtwo);
+        if (Arrone[0] == "-" && Arrtwo[0] == "-") { //for both strings negativ
+            if (Arrone.length > Arrtwo.length) {
+                return two;
+            } else if (Arrtwo.length > Arrone.length) {
+                return one; //Search by the length of the Array from input-strings
+            } else {
+                for (let i = 0; i < Arrone.length; i++) {
+                    if (Arrone[i] < Arrtwo[i]) {
+                        return one;
+                        break;
+                    } else if (Arrtwo[i] < Arrone[i]) {
+                        return two;
+                        break;
+                    } //Search by the digits for the greater number
+                }
+                return "same"
             }
-            return "same"
-        }
-    } else if (Arrone[0] == "-" || Arrtwo[0] == "-") { //for only one Array negativ
-        if (Arrone[0] == "-") {
-            return two
-        } else if (Arrtwo == "-0") {
-            return one
-        }
-    } else { // for both Arrays positiv
-        if (Arrone.length > Arrtwo.length) {
-            return one;
-        } else if (Arrtwo.length > Arrone.length) {
-            return two; //Search by the length of the Array from input-strings
-        } else {
-            for (let i = 0; i < Arrone.length; i++) {
-                if (Arrone[i] < Arrtwo[i]) {
-                    return two;
-                    break;
-                } else if (Arrtwo[i] < Arrone[i]) {
-                    return one;
-                    break;
-                } //Search by the digits for the greater number
+        } else if (Arrone[0] == "-" || Arrtwo[0] == "-") { //for only one Array negativ
+            if (Arrone[0] == "-") {
+                return two
+            } else if (Arrtwo == "-0") {
+                return one
             }
-            return "same"
+        } else { // for both Arrays positiv
+            if (Arrone.length > Arrtwo.length) {
+                return one;
+            } else if (Arrtwo.length > Arrone.length) {
+                return two; //Search by the length of the Array from input-strings
+            } else {
+                for (let i = 0; i < Arrone.length; i++) {
+                    if (Arrone[i] < Arrtwo[i]) {
+                        return two;
+                        break;
+                    } else if (Arrtwo[i] < Arrone[i]) {
+                        return one;
+                        break;
+                    } //Search by the digits for the greater number
+                }
+                return "same"
+            }
         }
     }
-}
-// input als String
+    // input als String
 let plus = (sumone, sumtwo) => {
-    let sumoneArr = Array.from(sumone);
-    let sumtwoArr = Array.from(sumtwo);
-    if (sumone == "0") {} else {
-        sumoneArr = deleteprenulls(sumoneArr);
-    }
-    if (sumtwo == "0") {} else {
-        sumtwoArr = deleteprenulls(sumtwoArr);
-    }
-    let transmission = 0;
-    let resultinverted = "";
-    let result = [];
-    let outputAsString = "";
-    let runthrow;
-    if (sumoneArr.length > sumtwoArr.length) {
-        runthrow = sumoneArr.length;
-        while (sumtwoArr.length < sumoneArr.length) {
-            sumtwoArr.unshift("0")
+        let sumoneArr = Array.from(sumone);
+        let sumtwoArr = Array.from(sumtwo);
+        if (sumone == "0") {} else {
+            sumoneArr = deleteprenulls(sumoneArr);
         }
-        sumoneArr.unshift("0");
-    } else {
-        runthrow = sumtwoArr.length;
-        while (sumtwoArr.length > sumoneArr.length) {
+        if (sumtwo == "0") {} else {
+            sumtwoArr = deleteprenulls(sumtwoArr);
+        }
+        let transmission = 0;
+        let resultinverted = "";
+        let result = [];
+        let outputAsString = "";
+        let runthrow;
+        if (sumoneArr.length > sumtwoArr.length) {
+            runthrow = sumoneArr.length;
+            while (sumtwoArr.length < sumoneArr.length) {
+                sumtwoArr.unshift("0")
+            }
             sumoneArr.unshift("0");
-        }
-        sumtwoArr.unshift("0")
-    } // the number with more digits gets another 0 in frontposition, the other as many as the other had before, so that the digits can be added one by one
-    for (let i = 0; i < runthrow; i++) {
-        if (parseInt(sumoneArr[sumoneArr.length - 1 - i]) + parseInt(sumtwoArr[sumtwoArr.length - 1 - i]) + transmission < 10) {
-            resultinverted += String(parseInt(sumoneArr[sumoneArr.length - 1 - i]) +
-                parseInt(sumtwoArr[sumtwoArr.length - 1 - i]) + transmission)
-            transmission = 0;
         } else {
-            resultinverted += String(String(parseInt(sumoneArr[sumoneArr.length - 1 - i]) + parseInt(sumtwoArr[sumtwoArr.length - 1 - i]) + transmission - 10))
-            transmission = 1;
+            runthrow = sumtwoArr.length;
+            while (sumtwoArr.length > sumoneArr.length) {
+                sumoneArr.unshift("0");
+            }
+            sumtwoArr.unshift("0")
+        } // the number with more digits gets another 0 in frontposition, the other as many as the other had before, so that the digits can be added one by one
+        for (let i = 0; i < runthrow; i++) {
+            if (parseInt(sumoneArr[sumoneArr.length - 1 - i]) + parseInt(sumtwoArr[sumtwoArr.length - 1 - i]) + transmission < 10) {
+                resultinverted += String(parseInt(sumoneArr[sumoneArr.length - 1 - i]) +
+                    parseInt(sumtwoArr[sumtwoArr.length - 1 - i]) + transmission)
+                transmission = 0;
+            } else {
+                resultinverted += String(String(parseInt(sumoneArr[sumoneArr.length - 1 - i]) + parseInt(sumtwoArr[sumtwoArr.length - 1 - i]) + transmission - 10))
+                transmission = 1;
+            }
+        } // all digits getting added one by one from the back forward (if greater 10 saved for next digit pair in transmission)
+        let resultinvertedArr = Array.from(resultinverted);
+        result = invertArr(resultinvertedArr);
+        if (result != ["0"]) {
+            result = deleteprenulls(Array.from(result));
         }
-    } // all digits getting added one by one from the back forward (if greater 10 saved for next digit pair in transmission)
-    let resultinvertedArr = Array.from(resultinverted);
-    result = invertArr(resultinvertedArr);
-    if (result != ["0"]) {
-        result = deleteprenulls(Array.from(result));
+        for (let i = 0; i < result.length; i++) {
+            outputAsString += result[i];
+        }
+        return outputAsString;
     }
-    for (let i = 0; i < result.length; i++) {
-        outputAsString += result[i];
-    }
-    return outputAsString;
-}
-// input as Strings
+    // input as Strings
 let minus = (minuend, substrahend) => {
     let transmission = 0;
     let result = "";
@@ -262,76 +262,83 @@ let wurzelziehen = (rootOf) => {
     return giveback;
 }
 let randomchar = () => {
-    let double = Math.random() * 10000;
-    if (double > 9442) {
-        return "a";
-    } else if (double > 9388) {
-        return "ä";
-    } else if (double > 9192) {
-        return "b";
-    } else if (double > 8876) {
-        return "c";
-    } else if (double > 8378) {
-        return "d";
-    } else if (double > 6685) {
-        return "e";
-    } else if (double > 6536) {
-        return "f";
-    } else if (double > 6234) {
-        return "g";
-    } else if (double > 5736) {
-        return "h";
-    } else if (double > 4934) {
-        return "i";
-    } else if (double > 4910) {
-        return "j";
-    } else if (double > 4778) {
-        return "k";
-    } else if (double > 4418) {
-        return "l";
-    } else if (double > 4163) {
-        return "m";
-    } else if (double > 3128) {
-        return "n";
-    } else if (double > 2904) {
-        return "o";
-    } else if (double > 2874) {
-        return "ö";
-    } else if (double > 2807) {
-        return "p";
-    } else if (double > 2805) {
-        return "q";
-    } else if (double > 2116) {
-        return "r"
-    } else if (double > 2079) {
-        return "ß"
-    } else if (double > 1437) {
-        return "s"
-    } else if (double > 858) {
-        return "t"
-    } else if (double > 475) {
-        return "u"
-    } else if (double > 410) {
-        return "ü"
-    } else if (double > 326) {
-        return "v"
-    } else if (double > 148) {
-        return "w"
-    } else if (double > 143) {
-        return "x"
-    } else if (double > 138) {
-        return "y"
-    } else {
-        return "z"
-    }
-} // gets a random character in the commenness of german
+        let double = Math.random() * 10000;
+        if (double > 9442) {
+            return "a";
+        } else if (double > 9388) {
+            return "ä";
+        } else if (double > 9192) {
+            return "b";
+        } else if (double > 8876) {
+            return "c";
+        } else if (double > 8378) {
+            return "d";
+        } else if (double > 6685) {
+            return "e";
+        } else if (double > 6536) {
+            return "f";
+        } else if (double > 6234) {
+            return "g";
+        } else if (double > 5736) {
+            return "h";
+        } else if (double > 4934) {
+            return "i";
+        } else if (double > 4910) {
+            return "j";
+        } else if (double > 4778) {
+            return "k";
+        } else if (double > 4418) {
+            return "l";
+        } else if (double > 4163) {
+            return "m";
+        } else if (double > 3128) {
+            return "n";
+        } else if (double > 2904) {
+            return "o";
+        } else if (double > 2874) {
+            return "ö";
+        } else if (double > 2807) {
+            return "p";
+        } else if (double > 2805) {
+            return "q";
+        } else if (double > 2116) {
+            return "r"
+        } else if (double > 2079) {
+            return "ß"
+        } else if (double > 1437) {
+            return "s"
+        } else if (double > 858) {
+            return "t"
+        } else if (double > 475) {
+            return "u"
+        } else if (double > 410) {
+            return "ü"
+        } else if (double > 326) {
+            return "v"
+        } else if (double > 148) {
+            return "w"
+        } else if (double > 143) {
+            return "x"
+        } else if (double > 138) {
+            return "y"
+        } else {
+            return "z"
+        }
+    } // gets a random character in the commenness of german
 
 let samepositionArr = [];
 let usertextArr = [];
+let runthrow = 1;
 let ready = (wert) => {
-    let runthrow = 1
     let text = document.getElementById('text').value;
-    let textArr = Array.from(text);
+    let Arrtext = Array.from(text);
+    let textwithoutspace = '';
+    for (let i = 0; i < Arrtext.length; i++) {
+        if (Arrtext[i] == 'a' || Arrtext[i] == 'b' || Arrtext[i] == 'c' || Arrtext[i] == 'd' || Arrtext[i] == 'e' || Arrtext[i] == 'f' || Arrtext[i] == 'g' || Arrtext[i] == 'h' || Arrtext[i] == 'i' || Arrtext[i] == 'j' || Arrtext[i] == 'k' || Arrtext[i] == 'l' || Arrtext[i] == 'm' || Arrtext[i] == 'n' || Arrtext[i] == 'o' || Arrtext[i] == 'p' || Arrtext[i] == 'q' || Arrtext[i] == 'r' || Arrtext[i] == 's' || Arrtext[i] == 't' || Arrtext[i] == 'u' || Arrtext[i] == 'v' || Arrtext[i] == 'w' || Arrtext[i] == 'x' || Arrtext[i] == 'y' || Arrtext[i] == 'z' || Arrtext[i] == 'ß' || Arrtext[i] == 'ä' || Arrtext[i] == 'ö' || Arrtext[i] == 'ü') {
+            textwithoutspace += Arrtext[i];
+        }
+    }
+    let textArr = Array.from(textwithoutspace);
     let wurzelzahl1 = String(document.getElementById('wurzel1').value);
     let wurzelzahl2 = String(document.getElementById('wurzel2').value);
     let wurzel1 = "";
@@ -410,6 +417,11 @@ function encrypt() {
     //and breaks befor the first undefind
     for (let i = 0; i < outputToUser.length; i++) {
         stringOutputToUser += outputToUser[i];
+        let breite = screen.availWidth;
+        console.log(breite);
+        if (i % Math.round(0.13 * breite) == Math.round(0.13 * breite) - 1) {
+            stringOutputToUser += "<br />";
+        }
     }
     //makes an String from the Array
     if (usertextArr != []) {
