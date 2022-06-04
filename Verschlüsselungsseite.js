@@ -337,56 +337,57 @@ let ready = (wert) => {
         if (Arrtext[i] == 'a' || Arrtext[i] == 'b' || Arrtext[i] == 'c' || Arrtext[i] == 'd' || Arrtext[i] == 'e' || Arrtext[i] == 'f' || Arrtext[i] == 'g' || Arrtext[i] == 'h' || Arrtext[i] == 'i' || Arrtext[i] == 'j' || Arrtext[i] == 'k' || Arrtext[i] == 'l' || Arrtext[i] == 'm' || Arrtext[i] == 'n' || Arrtext[i] == 'o' || Arrtext[i] == 'p' || Arrtext[i] == 'q' || Arrtext[i] == 'r' || Arrtext[i] == 's' || Arrtext[i] == 't' || Arrtext[i] == 'u' || Arrtext[i] == 'v' || Arrtext[i] == 'w' || Arrtext[i] == 'x' || Arrtext[i] == 'y' || Arrtext[i] == 'z' || Arrtext[i] == 'ß' || Arrtext[i] == 'ä' || Arrtext[i] == 'ö' || Arrtext[i] == 'ü') {
             textwithoutspace += Arrtext[i];
         }
-        let textArr = Array.from(textwithoutspace);
-        let wurzelzahl1 = String(document.getElementById('wurzel1').value);
-        let wurzelzahl2 = String(document.getElementById('wurzel2').value);
-        let wurzel1 = "";
-        let wurzel2 = "";
-        let smallestlength;
-        let sameposition = [];
-        if (document.getElementById('toDo').value == "encrypt") {
-            for (let i = 0; i < textArr.length * wert; i++) {
-                wurzelzahl1 += "00"
-                wurzelzahl2 += "00"
-            }
-        } else if (document.getElementById('toDo').value == "decrypt") {
-            for (let i = 0; i < textArr.length; i++) {
-                wurzelzahl1 += "00"
-                wurzelzahl2 += "00"
-            }
+    }
+    let textArr = Array.from(textwithoutspace);
+    let wurzelzahl1 = String(document.getElementById('wurzel1').value);
+    let wurzelzahl2 = String(document.getElementById('wurzel2').value);
+    let wurzel1 = "";
+    let wurzel2 = "";
+    let smallestlength;
+    let sameposition = [];
+    if (document.getElementById('toDo').value == "encrypt") {
+        for (let i = 0; i < textArr.length * wert; i++) {
+            wurzelzahl1 += "00"
+            wurzelzahl2 += "00"
         }
-        wurzel1 = wurzelziehen(wurzelzahl1);
-        wurzel2 = wurzelziehen(wurzelzahl2);
-        let wurzel1Arr = Array.from(wurzel1);
-        let wurzel2Arr = Array.from(wurzel2);
-
-        if (wurzel1Arr.length < wurzel2Arr.length) {
-            smallestlength = wurzel1Arr.length;
-        } else {
-            smallestlength = wurzel2Arr.length;
-        }
-        // looks if the firstpara or the secondpara has more digits
-
-        for (let i = 0; i < smallestlength; i++) {
-            if (wurzel1Arr[i] === wurzel2Arr[i]) {
-                sameposition.push(i + 1)
-            }
-        } // finds out when the digits on the sameposition are the same and safes it in Array 'sameposition'
-        if (sameposition.length < textArr.length && document.getElementById("toDo").value == "encrypt") {
-            ready(Math.pow(wert, (runthrow * 1.3)));
-            runthrow++;
-        } else {
-            samepositionArr = sameposition;
-            usertextArr = textArr;
-            if (document.getElementById("toDo").value == "decrypt") {
-                decrypt();
-            }
-            if (document.getElementById("toDo").value == "encrypt") {
-                encrypt();
-            } // triggers the needed method
+    } else if (document.getElementById('toDo').value == "decrypt") {
+        for (let i = 0; i < textArr.length; i++) {
+            wurzelzahl1 += "00"
+            wurzelzahl2 += "00"
         }
     }
+    wurzel1 = wurzelziehen(wurzelzahl1);
+    wurzel2 = wurzelziehen(wurzelzahl2);
+    let wurzel1Arr = Array.from(wurzel1);
+    let wurzel2Arr = Array.from(wurzel2);
+
+    if (wurzel1Arr.length < wurzel2Arr.length) {
+        smallestlength = wurzel1Arr.length;
+    } else {
+        smallestlength = wurzel2Arr.length;
+    }
+    // looks if the firstpara or the secondpara has more digits
+
+    for (let i = 0; i < smallestlength; i++) {
+        if (wurzel1Arr[i] === wurzel2Arr[i]) {
+            sameposition.push(i + 1)
+        }
+    } // finds out when the digits on the sameposition are the same and safes it in Array 'sameposition'
+    if (sameposition.length < textArr.length && document.getElementById("toDo").value == "encrypt") {
+        ready(Math.pow(wert, (runthrow * 1.3)));
+        runthrow++;
+    } else {
+        samepositionArr = sameposition;
+        usertextArr = textArr;
+        if (document.getElementById("toDo").value == "decrypt") {
+            decrypt();
+        }
+        if (document.getElementById("toDo").value == "encrypt") {
+            encrypt();
+        } // triggers the needed method
+    }
 }
+
 
 function encrypt() {
     let output = [];
