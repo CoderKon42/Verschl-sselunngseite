@@ -131,7 +131,7 @@ let minus = (minuend, substrahend) => {
         substrahendArr.unshift("0");
     }
     if (größer(minuend, substrahend) == substrahend) {
-        return "-42" // if result is negativ returns "-42"; later on just looked wether greater null or not 
+        return "-42" // if result is negativ returns "-42"; later on it is just looked if its greater null
     } else {
         for (let i = 0; i < minuendArr.length; i++) {
             if (parseInt(minuendArr[minuendArr.length - 1 - i]) -
